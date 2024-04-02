@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ProjetForm from './components/ProjetForm';
+import Restitution from './components/Restitution';
 
-function App() {
+const App = () => {
+  const [formData, setFormData] = useState(null);
+
+  const handleSubmit = (data) => {
+    console.log('Données soumises :', data);
+    setFormData(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Webapp - AMBITION</h1>
+      {formData ? (
+        <Restitution data={formData} />
+      ) : (
+        <ProjetForm onSubmit={handleSubmit} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
